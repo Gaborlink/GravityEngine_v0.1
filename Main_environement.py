@@ -69,7 +69,7 @@ class MainSim:
             event.lower()
             if "create" in event and "object" in event:
 
-                NewObject = self.DefObject(mass=float(input("Masse de l'objet : ")))
+                NewObject = self.DefObject(name=True, mass=True)
                 ObjectsDico[NewObject[0]] = NewObject[1]
             else :
                 print(f"Nothing was called or the input is incorrect.")
@@ -85,8 +85,14 @@ class MainSim:
                 SwipeDistance[i] = gw.get_cursor_pos(Window)[i] - StartPosCursor[i]
             tuple(SwipeDistance)
 
-    def DefObject(self, name=input("Nom de l'objet : "), x:float=0, y:float=0, mass:float=0, color:list=[1, 1, 1]):
+    def DefObject(self, name=False, x:float=0, y:float=0, mass=False, color:list=[1, 1, 1]):
 
+        if name == True:
+
+            name = input("Name of the object : ")
+        if mass == True:
+
+            mass = float(input("Mass of the object : "))
         return [name, [mass, [x, y]], color]
     
     def ShowInfos(self, objects:list):
